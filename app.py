@@ -3,6 +3,7 @@ from flask_restful import Api
 from blacklist import BLACKLIST
 from resources.hotel import Hoteis, Hotel
 from resources.usuario import User, UserLogin, UserRegister, UserLogout
+from resources.site import Sites, Site
 from flask_jwt_extended import JWTManager
 
 
@@ -38,14 +39,16 @@ def token_de_acesso_invalidado():
 
 
 # adiciona o rescurso para api"
-api.add_resource(Hoteis, '/hoteis')
 # acessa todos os hoteis do site
 
+api.add_resource(Hoteis, '/hoteis')
 api.add_resource(Hotel, '/hoteis/<string:hotel_id>')  # syntax padrão
 api.add_resource(User, '/usuarios/<int:user_id>')
 api.add_resource(UserRegister, '/singup')
 api.add_resource(UserLogin, '/login')
 api.add_resource(UserLogout, '/logout')
+api.add_resource(Sites, '/sites')
+api.add_resource(Site, '/sites/<string:url>')
 
 if __name__ == '__main__':
     from sql_alchemy import banco
