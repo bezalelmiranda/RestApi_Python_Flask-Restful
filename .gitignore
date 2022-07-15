@@ -140,3 +140,4 @@ credentials.json
 cython_debug/
 
 banco.db
+connection.py

@@ -8,14 +8,12 @@ from resources.site import Sites, Site
 from index import Index
 from flask_jwt_extended import JWTManager
 from sql_alchemy import banco
-from connection import Connection
-
 
 app = Flask(__name__)
-banco.init_app(app)
+
 # caminho e nome do banco
 app.config['SQLALCHEMY_DATABASE_URI'] = \
-    'mysql:///{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}'
+    'mysql+pymysql://root:@localhost:3306/banco'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = 'DontTellAnyone'
@@ -63,7 +61,7 @@ if __name__ == '__main__':
     # from sql_alchemy import banco
     # só sera executado(criar o banco)
     # dentro do arquivo main e não de qualquer outro arquivo
-    # banco.init_app(app)
+    banco.init_app(app)
     # app.run(debug=True)
     app.run(host='0.0.0.0', port=8080)
 

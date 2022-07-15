@@ -4,7 +4,7 @@ from models.site import SiteModel
 from resources.filtros import consulta_sem_cidade, consulta_com_cidade
 from resources.filtros import normalize_path_params
 from flask_jwt_extended import jwt_required
-from connection import Connection
+import mysql.connector
 
 
 # path /hoteis?cidade=Rio de Janeiro&estrelas_min=4&diaria_max=400
@@ -20,9 +20,13 @@ path_params.add_argument('offset', type=float)
 
 class Hoteis(Resource):
     def get(self):
-        open_connection = Connection.open_connection(self)
-        connection = open_connection['connection']
-        cursor = open_connection['cursor']
+        open_connection = mysql.connector.connect(user='root',
+                                                  password='',
+                                                  host='localhost',
+                                                  database='banco',
+                                                  port=3306)
+        # connection = open_connection['connection']
+        cursor = open_connection.cursor()
 
         # connection = sqlite3.connect('banco.db')
         # cursor = connection.cursor()
@@ -42,7 +46,7 @@ class Hoteis(Resource):
         else:
             tupla = tuple([parametros[chave] for chave in parametros])
             # resultado = cursor.execute(consulta_com_cidade, tupla)
-            cursor.execute(consulta_sem_cidade, tupla)
+            cursor.execute(consulta_com_cidade, tupla)
             resultado = cursor.fetchall()
 
         hoteis = []
