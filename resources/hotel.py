@@ -5,6 +5,7 @@ from resources.filtros import consulta_sem_cidade, consulta_com_cidade
 from resources.filtros import normalize_path_params
 from flask_jwt_extended import jwt_required
 import mysql.connector
+from config_json import *
 
 
 # path /hoteis?cidade=Rio de Janeiro&estrelas_min=4&diaria_max=400
@@ -20,11 +21,11 @@ path_params.add_argument('offset', type=float)
 
 class Hoteis(Resource):
     def get(self):
-        open_connection = mysql.connector.connect(user='root',
-                                                  password='',
-                                                  host='localhost',
-                                                  database='banco',
-                                                  port=3306)
+        open_connection = mysql.connector.connect(user=USER,
+                                                  password=PASSWORD,
+                                                  host=HOST,
+                                                  database=DATABASE,
+                                                  port=PORT)
         # connection = open_connection['connection']
         cursor = open_connection.cursor()
 

@@ -3,8 +3,8 @@ from requests import post
 from sql_alchemy import banco
 
 
-MAILGUN_DOMAIN = 'Informação da mailgun.com'
-MAILGUN_API_KEY = 'Informação da mailgun.com'
+MAILGUN_DOMAIN = 'Informações mailgun.com'
+MAILGUN_API_KEY = 'Informações mailgun.com'
 FROM_TITLE = 'NO-REPLY'
 FROM_EMAIL = 'no-reply@restapi.com'
 

@@ -8,15 +8,16 @@ from resources.site import Sites, Site
 from index import Index
 from flask_jwt_extended import JWTManager
 from sql_alchemy import banco
+from config_json import *
 
 app = Flask(__name__)
 
 # caminho e nome do banco
 app.config['SQLALCHEMY_DATABASE_URI'] = \
-    'mysql+pymysql://root:@localhost:3306/banco'
+    f'mysql+pymysql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['JWT_SECRET_KEY'] = 'DontTellAnyone'
+# app.config['JWT_SECRET_KEY'] = 'DontTellAnyone'
 app.config['JWT_BLACKLIST_ENABLED'] = True
 api = Api(app)
 jwt = JWTManager(app)
