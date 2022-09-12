@@ -126,7 +126,7 @@ class UserLogin(Resource):
         # se existe o user e se a senha for igual
         # cria-se um token de acesso, que identifica o usuario pelo id
                 return {'access_token': token_de_acesso}, 200
-            return {'message': 'User not confirmed.'}, 400
+            # return {'message': 'User not confirmed.'}, 400
         # Unauthorized
         return {'message': 'The username or password is incorrect.'}, 401
 
